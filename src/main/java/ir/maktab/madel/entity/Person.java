@@ -1,4 +1,5 @@
 package ir.maktab.madel.entity;
+import ir.maktab.madel.enumurated.Role;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
@@ -8,9 +9,8 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Builder
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

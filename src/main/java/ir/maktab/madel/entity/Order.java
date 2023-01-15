@@ -1,5 +1,6 @@
 package ir.maktab.madel.entity;
 
+import ir.maktab.madel.enumurated.CurrentSituation;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -20,9 +21,11 @@ public class Order {
     private double proposedPrice;
 
     private String jobDescription;
+
     @CreationTimestamp
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date dateAndTimeOfWork;
+
     @Column(nullable = false)
     private String customerAddress;
 

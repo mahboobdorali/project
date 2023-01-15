@@ -1,5 +1,6 @@
 package ir.maktab.madel.entity;
 
+import ir.maktab.madel.enumurated.ApprovalStatus;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,18 +15,24 @@ import java.util.List;
 @ToString
 @Entity
 @Builder
-
+@NamedQueries(
+        @NamedQuery(name = "getAllExpert",query = "FROM Expert"))
 public class Expert extends Person implements Serializable {
     private double averageScore;//نباید از کاربر بگیرم و خودم باید متد بنویسم تا میانگین امتیازاتش رو حساب کنه و ذخیره کنه
     @Lob
     @Column(nullable = false, name = "PERSONAL_PICTURE")
     private byte[] image;
-    @Column(unique = true, nullable = false)
-    private int code;//رندوم هندلش کنم
-    @ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
-    private List<زیرخدمت> list = new ArrayList<>();
+
+    @Enumerated(EnumType.STRING)
+    private ApprovalStatus approvalStatus;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<UnderService> list = new ArrayList<>();
+
     //private double amount;//کاربر خودش نباید وارد کنه و هرچی از حساب مشتریش کم شد باید به حساب این واریز بشه
-    @OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.PERSIST)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ToString.Exclude
     private List<SubmitAnOffer> submitAnOfferList = new ArrayList<>();
 
 
