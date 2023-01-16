@@ -6,6 +6,7 @@ import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.Duration;
 import java.util.Date;
 
 @Getter
@@ -18,15 +19,14 @@ public class SubmitAnOffer {
     private Long id;
     @CreationTimestamp
     @Temporal(value = TemporalType.TIMESTAMP)
-    private Date dateAndTimeOfOffer;
+    private Date dateAndTimeRegistrationOfOffer;
 
     private double priceOffer;
 
-    @Temporal(value = TemporalType.TIME)
-    private Date durationOfWork;
+    private Duration durationOfWork;
 
-    @Temporal(value = TemporalType.TIMESTAMP)
-    private Date TimeProposeToDoWork;
+    @Temporal(value = TemporalType.TIME)
+    private Date TimeProposeToStartWork;
 
 //برای متخصص
 }

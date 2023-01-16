@@ -3,9 +3,7 @@ package ir.maktab.validation;
 import ir.maktab.exception.InputInvalidException;
 public class Validate {
     public static void emailIsValid(String email) throws InputInvalidException {
-        if (!email.equals("") && email.matches("^[a-zA-Z0-9_+&*-]+(?:\\." +
-                "[a=zA-Z0-9_+&*-]+)*@" +
-                "(?:[a-zA-Z0-9-]+\\.)+[a-zA-z]{2,7}$"))
+        if (!email.equals("") && email.matches("^(?!.*((?:(?<![\\w.\\-+%])[\\w._%+-]+@[\\w.-]+.[a-zA-Z]{2,}\\b)).*\\b\\1\\b)(?:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})(?:,(?:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}))*$\n"))
             return;
         throw new InputInvalidException("your email address is not valid");
     }

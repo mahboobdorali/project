@@ -21,8 +21,6 @@ public class Person {
     private String family;
     @Column(nullable = false, unique = true)
     private String emailAddress;
-    @Column(nullable = false)
-    private String username;
     @Column(unique = true, nullable = false)
     private String password;
     @Enumerated(EnumType.STRING)
@@ -30,8 +28,11 @@ public class Person {
     @CreationTimestamp
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date dateAndTimeOfRegistration;
+
     @Column(nullable = false)
     private boolean isConfirm;
+
+    private double amount;//کاربر خودش نباید وارد کنه و هرچی از حساب مشتریش کم شد باید به حساب این واریز بشه
 
     @Override
     public String toString() {

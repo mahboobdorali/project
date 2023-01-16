@@ -11,6 +11,9 @@ import javax.persistence.*;
 @ToString
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
+@NamedQueries(
+        @NamedQuery(name = "getAllService",query = "FROM Service"))
+
 public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

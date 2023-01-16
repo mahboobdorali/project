@@ -30,7 +30,7 @@ public class Expert extends Person implements Serializable {
     @ToString.Exclude
     private List<UnderService> list = new ArrayList<>();
 
-    //private double amount;//کاربر خودش نباید وارد کنه و هرچی از حساب مشتریش کم شد باید به حساب این واریز بشه
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @ToString.Exclude
     private List<SubmitAnOffer> submitAnOfferList = new ArrayList<>();

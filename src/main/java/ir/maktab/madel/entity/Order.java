@@ -22,7 +22,7 @@ public class Order {
 
     private String jobDescription;
 
-    @CreationTimestamp
+
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date dateAndTimeOfWork;
 
