@@ -7,7 +7,7 @@ import ir.maktab.service.OrderService;
 import java.util.List;
 
 public class OrderImpl implements OrderService {
-    private static OrderRepository orderRepository = new OrderRepository();
+    private static final OrderRepository orderRepository = new OrderRepository();
 
     @Override
     public void saveOrder(OrdersCustomer ordersCustomer) {

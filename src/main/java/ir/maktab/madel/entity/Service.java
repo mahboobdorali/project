@@ -14,10 +14,10 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-/*
+
 @NamedQueries(
         @NamedQuery(name = "getAllService",query = "FROM Service"))
-*/
+
 
 public class Service {
     @Id

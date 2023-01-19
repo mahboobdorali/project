@@ -9,8 +9,9 @@ import javax.persistence.Embeddable;
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
+@Builder
 public class CustomerAddress {
 private String street;
-private String City;
+private String city;
 private String plaque;
 }

@@ -16,13 +16,14 @@ import java.util.Optional;
 public class ExpertRepository implements IRepository<Expert> {
     @Override
     public void save(Expert expert) {
-        EntityManager em = Config.emf.createEntityManager();
         try {
+            EntityManager em = Config.emf.createEntityManager();
             em.getTransaction().begin();
-            em.merge(expert);
+            em.persist(expert);
             em.getTransaction().commit();
+            em.close();
         } catch (Exception e) {
-            em.getTransaction().rollback();
+            System.err.println(e.getMessage());
         }
     }
 
@@ -60,10 +61,10 @@ public class ExpertRepository implements IRepository<Expert> {
         em.getTransaction().begin();
         Query query = em.createQuery("from Expert e where e.approvalStatus=:approvalStatus");
         query.setParameter("approvalStatus", approvalStatus);
-        List resultList = query.getResultList();
+        List resultList1 = query.getResultList();
         em.getTransaction().commit();
         em.close();
-        return resultList;
+        return resultList1;
     }
 
     public Optional<Expert> getByEmail(String emailAddress) {

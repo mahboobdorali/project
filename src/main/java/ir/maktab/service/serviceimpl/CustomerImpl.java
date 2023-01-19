@@ -6,7 +6,6 @@ import ir.maktab.madel.entity.UnderService;
 import ir.maktab.repository.CustomerRepository;
 import ir.maktab.service.CustomerService;
 import ir.maktab.util.DateUtil;
-import ir.maktab.validation.Validate;
 
 import javax.persistence.NoResultException;
 
