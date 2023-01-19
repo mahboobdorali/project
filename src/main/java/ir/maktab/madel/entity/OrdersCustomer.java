@@ -24,8 +24,9 @@ public class OrdersCustomer {//سفارش
     private String jobDescription;
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date dateAndTimeOfWork;
-    @Column(nullable = false)
-    private String customerAddress;
+    @Embedded
+
+    private CustomerAddress customerAddress;
 
     @Enumerated(EnumType.STRING)
     private CurrentSituation currentSituation;
