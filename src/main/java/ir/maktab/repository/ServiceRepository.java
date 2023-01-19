@@ -5,6 +5,7 @@ import ir.maktab.madel.entity.Service;
 import ir.maktab.repository.configuration.Config;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.List;
 
 public class ServiceRepository implements  IRepository<Service>{
@@ -43,11 +44,17 @@ public class ServiceRepository implements  IRepository<Service>{
 
     @Override
     public List<Service> getAll() {
-        EntityManager em = Config.emf.createEntityManager();
+      /*  EntityManager em = Config.emf.createEntityManager();
         em.getTransaction().begin();
         List<Service> serviceList = em.createNamedQuery("getAllService").getResultList();
         em.getTransaction().commit();
         em.close();
-        return serviceList;
+        return serviceList;*/
+
+        EntityManager em = Config.emf.createEntityManager();
+        em.getTransaction().begin();
+            String hql = "from Service ";
+            Query query = em.createQuery(hql, Service.class);
+        return query.getResultList();
     }
 }
