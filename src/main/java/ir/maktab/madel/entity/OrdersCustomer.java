@@ -2,7 +2,6 @@ package ir.maktab.madel.entity;
 
 import ir.maktab.madel.enumurated.CurrentSituation;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -15,8 +14,8 @@ import java.util.Date;
 @Entity
 @Builder
 @NamedQueries(
-        @NamedQuery(name = "getAllOrder",query = "FROM OrdersCustomer "))
-public class OrdersCustomer {//سفارش
+        @NamedQuery(name = "getAllOrder", query = "FROM OrdersCustomer "))
+public class OrdersCustomer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,10 +24,12 @@ public class OrdersCustomer {//سفارش
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date dateAndTimeOfWork;
     @Embedded
-
+    @AttributeOverrides(value ={
+            @AttributeOverride(name="city",column = @Column(nullable = false)),
+            @AttributeOverride(name="plaque",column = @Column(nullable = false))
+    })
     private CustomerAddress customerAddress;
 
     @Enumerated(EnumType.STRING)
     private CurrentSituation currentSituation;
-//این قسمت برای مشتریه
 }
