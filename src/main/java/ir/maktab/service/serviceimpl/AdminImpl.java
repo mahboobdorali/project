@@ -17,14 +17,19 @@ public class AdminImpl implements AdminService {
     private static final UnderService underservice = new UnderService();
     private final Expert expert = new Expert();
 
+    @Override
     public void showAllOfUnderServiceByAdmin() {
+
         underServiceImpl.showAllUnderService();
     }
 
+    @Override
     public void showAllOfMainServiceByAdmin() {
+
         mainService.showAllMainService();
     }
 
+    @Override
     public List<Expert> expertListWhereStatusNew(ApprovalStatus status) {
         List<Expert> expertInNewStatus = expertServiceImpl.getExpertInNewStatus(status);
         for (Expert list : expertInNewStatus) {
@@ -34,19 +39,22 @@ public class AdminImpl implements AdminService {
         return expertInNewStatus;
     }
 
+    @Override
     public void updateFieldsOfUnderService(UnderService underService) {
         underServiceImpl.updateUnderService(underService);
     }
 
-    public void conditionForAddUnderServiceAndService(UnderService underService) throws DuplicateEntryException {
+    @Override
+    public void conditionForAddUnderServiceAndService(UnderService underService11, Service service11) throws DuplicateEntryException {
         List<UnderService> underServices1 = underServiceImpl.showAllUnderService();
-       // List<Service> services = mainService.showAllMainService();
-       if(underServices1.contains(underService.getNameSubService()))
-           throw new DuplicateEntryException("entry is duplicated");
-
-       else
-          // mainService.saveMainService(service1);
-         underServiceImpl.saveUnderService(underService);
-
+        List<Service> services = mainService.showAllMainService();
+        if (services.toString().contains(service11.getName()) && underServices1.toString().contains(underService11.getNameSubService())) {
+            throw new DuplicateEntryException("entry is duplicated");
+        } else {
+            underServiceImpl.saveUnderService(underService11);
+            underServiceImpl.updateUnderService(underService11);
+            mainService.saveMainService(service11);
+            mainService.updateMainService(service11);
+        }
     }
 }
