@@ -36,7 +36,7 @@ public class ExpertServiceImpl implements ExpertService {
     }
 
     @Override
-    public List<Expert> getExpertInNewStatus(ApprovalStatus approvalStatus) {
+    public Expert getExpertInNewStatus(ApprovalStatus approvalStatus) {
         return expertRepository.getExpertInNewStat(approvalStatus);
     }
 

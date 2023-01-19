@@ -56,15 +56,15 @@ public class ExpertRepository implements IRepository<Expert> {
         return expertList;
     }
 
-    public List<Expert> getExpertInNewStat(ApprovalStatus approvalStatus) {
+    public Expert getExpertInNewStat(ApprovalStatus approvalStatus) {
         EntityManager em = Config.emf.createEntityManager();
         em.getTransaction().begin();
         Query query = em.createQuery("from Expert e where e.approvalStatus=:approvalStatus");
         query.setParameter("approvalStatus", approvalStatus);
-        List resultList1 = query.getResultList();
+        Expert singleResult = (Expert) query.getSingleResult();
         em.getTransaction().commit();
         em.close();
-        return resultList1;
+        return singleResult;
     }
 
     public Optional<Expert> getByEmail(String emailAddress) {

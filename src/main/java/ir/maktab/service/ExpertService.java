@@ -11,7 +11,7 @@ public interface ExpertService {
     void update(Expert expert);
     void deleteExpert(Expert expert);
     List<Expert> showAllOfExperts();
-    List<Expert>getExpertInNewStatus(ApprovalStatus approvalStatus);
+    Expert getExpertInNewStatus(ApprovalStatus approvalStatus);
     Expert logInExpert(String emailAddress,String password);
     void updatePasswordByEmailAddress(String password, String emailAddress);
 }

@@ -25,13 +25,12 @@ public class AdminImpl {
         mainService.showAllMainService();
     }
 
-
-    public Expert expertListWhereStatusNew(Expert expert) {
-        List<Expert> expertInNewStatus = expertServiceImpl.getExpertInNewStatus(ApprovalStatus.NEW);
-
-        x expertServiceImpl.update(list);
+    public Expert convertStatus(Expert expert) {
+        Expert expertInNewStatus = expertServiceImpl.getExpertInNewStatus(expert.getApprovalStatus());
+      expert.setApprovalStatus(ApprovalStatus.ACCEPTED);
+      expertServiceImpl.update(expert);
+        return expertInNewStatus;
     }
-
 
     public void addExpertToUnderService(UnderService subService) {
         List<UnderService> underServices1 = underServiceImpl.showAllUnderService();

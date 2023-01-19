@@ -2,7 +2,9 @@ package ir.maktab.service.serviceimpl;
 
 import ir.maktab.madel.entity.Customer;
 import ir.maktab.madel.entity.OrdersCustomer;
+import ir.maktab.madel.entity.Service;
 import ir.maktab.madel.entity.UnderService;
+import ir.maktab.madel.enumurated.CurrentSituation;
 import ir.maktab.repository.CustomerRepository;
 import ir.maktab.service.CustomerService;
 import ir.maktab.util.DateUtil;
@@ -62,11 +64,12 @@ public class CustomerImpl implements CustomerService {
     public void Order(OrdersCustomer ordersCustomer) {
         showAllService();
         showAllUnderService();
-
-    if (ordersCustomer.getProposedPrice() >= underService.getBasePrice()) {
+        if (ordersCustomer.getProposedPrice() >= underService.getBasePrice()) {
             DateUtil.isDateValid(ordersCustomer.getDateAndTimeOfWork());
+            ordersCustomer.setCurrentSituation(CurrentSituation.WAITING_FOR_EXPERT_ADVICE);
             orderImpl.saveOrder(ordersCustomer);
         } else throw new NoResultException("invalid inputs!!!");
     }
 }
+
 
