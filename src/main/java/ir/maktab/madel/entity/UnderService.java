@@ -2,10 +2,10 @@ package ir.maktab.madel.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,11 +13,17 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 @NamedQueries(
         @NamedQuery(name = "getAllUnderService",query = "FROM UnderService "))
 
-public class UnderService extends Service implements Serializable {
+public class UnderService  {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String nameSubService;
     private double basePrice;
     private String briefExplanation;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Service Service;
 }
