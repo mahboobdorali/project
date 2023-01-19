@@ -1,6 +1,7 @@
 package ir.maktab.madel.entity;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,15 +14,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Builder
+@SuperBuilder
 @NamedQueries(
         @NamedQuery(name = "getAllCustomer",query = "FROM Customer"))
 public class Customer extends Person implements Serializable {
-    @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
-    @ToString.Exclude
-    private List<Order>orderList=new ArrayList<>();
+    @OneToMany( fetch = FetchType.LAZY)
+    private List<OrdersCustomer> ordersCustomerList = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
-    @ToString.Exclude
-    private List<Comments> commentsList=new ArrayList<>();
 }
