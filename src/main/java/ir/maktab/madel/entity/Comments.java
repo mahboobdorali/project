@@ -1,9 +1,6 @@
 package ir.maktab.madel.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +9,8 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@ToString
 public class Comments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
