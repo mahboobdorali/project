@@ -13,14 +13,17 @@ import java.util.Date;
 @Setter
 @ToString
 @Entity
-public class SubmitAnOffer {
+public class SubmitAnOffer {//پیشنهادات
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @CreationTimestamp
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date dateAndTimeRegistrationOfOffer;
-
+    @ManyToOne
+    private Expert expert;
+    @OneToOne
+    private OrdersCustomer ordersCustomer;
     private double priceOffer;
 
     private Duration durationOfWork;

@@ -37,7 +37,7 @@ public class CustomerRepository implements IRepository<Customer> {
     public void delete(Customer customer) {
         EntityManager em = Config.emf.createEntityManager();
         em.getTransaction().begin();
-        Customer deleteCustomer= em.find(Customer.class, customer.getId());
+        Customer deleteCustomer = em.find(Customer.class, customer.getId());
         em.remove(deleteCustomer);
         em.getTransaction().commit();
         em.close();
@@ -46,13 +46,14 @@ public class CustomerRepository implements IRepository<Customer> {
     @Override
     public List<Customer> getAll() {
 
-        EntityManager em =Config.emf.createEntityManager();
+        EntityManager em = Config.emf.createEntityManager();
         em.getTransaction().begin();
         List<Customer> customerList = em.createNamedQuery("getAllCustomer").getResultList();
         em.getTransaction().commit();
         em.close();
         return customerList;
     }
+
     public Optional<Customer> getByEmail(String emailAddress) {
         Customer customer;
         try {
@@ -68,17 +69,17 @@ public class CustomerRepository implements IRepository<Customer> {
         }
         return Optional.ofNullable(customer);
     }
-    public Customer updatePasswordByEmailAddress(String password, String emailAddress) {
+
+
+    public void updatePasswordByEmailAddress(String password, String emailAddress) {
         EntityManager em = Config.emf.createEntityManager();
         em.getTransaction().begin();
-        Query query = em.createQuery("update Customer e set e.password=:password" +
-                " where e.emailAddress=:emailAddress");
+        Query query = em.createQuery("update Customer e set e.password =:password" +
+                " where e.emailAddress =:emailAddress");
         query.setParameter("password", password);
         query.setParameter("emailAddress", emailAddress);
         query.executeUpdate();
-        Customer customer = (Customer) query.getSingleResult();
         em.getTransaction().commit();
         em.close();
-        return customer;
     }
 }
