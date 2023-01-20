@@ -1,10 +1,18 @@
 package ir.maktab.service.serviceimpl;
+
 import ir.maktab.madel.entity.Comments;
 import ir.maktab.madel.entity.Expert;
 import ir.maktab.madel.enumurated.ApprovalStatus;
 import ir.maktab.repository.ExpertRepository;
 import ir.maktab.service.ExpertService;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 import javax.persistence.NoResultException;
+import java.io.File;
+import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -53,4 +61,20 @@ public class ExpertServiceImpl implements ExpertService {
 
         expertRepository.updatePasswordByEmailAddress(password, emailAddress);
     }
+
+    public void image(File imageFile, Expert expert) throws IOException {
+        final int SIZE = 0;
+        ImageInputStream imageInputStream = ImageIO.createImageInputStream(imageFile);
+        Iterator<ImageReader> imageReadersList = ImageIO.getImageReaders(imageInputStream);
+        if (!imageReadersList.hasNext()) {
+            throw new NoResultException("Image  Not Found!!!");
+        }
+        ImageReader image = imageReadersList.next();
+        String formatName = image.getFormatName();
+        if (formatName.equals("jpg") && SIZE <= 300000) {
+            expertRegistration(expert);
+        }
+        imageInputStream.close();
+    }
 }
+

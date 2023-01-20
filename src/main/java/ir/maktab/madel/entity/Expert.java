@@ -19,18 +19,18 @@ import java.util.List;
 @NamedQueries(
         @NamedQuery(name = "getAllExpert", query = "FROM Expert"))
 public class Expert extends Person implements Serializable {
-    private double averageScore;//نباید از کاربر بگیرم و خودم باید متد بنویسم تا میانگین امتیازاتش رو حساب کنه و ذخیره کنه
-  //  @Lob
-   /* @Column(nullable = false, name = "PERSONAL_PICTURE")
+    private double averageScore;
+    @Lob
+    @Column(nullable = false)
     private byte[] image;
-*/
+
     @Enumerated(EnumType.STRING)
     private ApprovalStatus approvalStatus;
 
-    @ManyToMany( fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<UnderService> underServiceList = new ArrayList<>();
-    @OneToMany( fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Comments> commentsList = new ArrayList<>();
-    @OneToMany(fetch=FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     private List<OrdersCustomer> ordersCustomer = new ArrayList<>();
 }

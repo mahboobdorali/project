@@ -4,7 +4,9 @@ import ir.maktab.madel.enumurated.CurrentSituation;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,6 +21,12 @@ public class OrdersCustomer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    private Expert expert;
+    @ManyToOne
+    private Customer customer;
+    @ManyToMany
+    private List<UnderService> underService=new ArrayList<>();
     private double proposedPrice;
     private String jobDescription;
     @Temporal(value = TemporalType.TIMESTAMP)

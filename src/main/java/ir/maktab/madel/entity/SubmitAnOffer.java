@@ -13,7 +13,7 @@ import java.util.Date;
 @Setter
 @ToString
 @Entity
-public class SubmitAnOffer {//پیشنهادات
+public class SubmitAnOffer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,6 +30,4 @@ public class SubmitAnOffer {//پیشنهادات
 
     @Temporal(value = TemporalType.TIME)
     private Date TimeProposeToStartWork;
-
-//برای متخصص
 }
